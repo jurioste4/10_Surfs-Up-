@@ -43,7 +43,7 @@ def welcome():
         f"Available Routes:<br/>"
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/temperature<br/>"
+        f"/api/v1.0/tobs<br/>"
         f"/api/v1.0/<start><br/>"
         f"/api/v1.0/<start>/<end><br/>"
         
@@ -84,6 +84,23 @@ def stations():
 
 ############################################################################
 
+@app.route("/api/v1.0/tobs")
+def tobs():
+    """"list of temperatures by year"""
+    one_year = dt.date(2011, 1, 1) - dt.timedelta(days=365)
+    temp_results = session.query(measurement.date, measurement.tobs).\
+    filter(measurement.date > one_year).\
+    order_by(measurement.date).all()
+
+    temp_all = []
+    for date,tobs in temp_results:
+        row = {}
+        row["date"] = date
+        row["tobs"] = tobs
+        temp_all.append(row)
+    
+    return jsonify(temp_all)
+#########################################################################
 
 
 
