@@ -101,6 +101,15 @@ def tobs():
     
     return jsonify(temp_all)
 #########################################################################
+@app.route("/api/v1.0/<start>")
+def trip1(start):
+    one_year = start - dt.timedelta(days=365)
+    calc_temps = session.query(func.min(Measurement.tobs)), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+    filter(Measurement.date >= one_year).filter(Measurement.date <= one_year).all()
+
+
+
+
 
 
 
