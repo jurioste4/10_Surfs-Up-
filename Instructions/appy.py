@@ -103,10 +103,15 @@ def tobs():
 #########################################################################
 @app.route("/api/v1.0/<start>")
 def trip1(start):
-    one_year = start - dt.timedelta(days=365)
-    calc_temps = session.query(func.min(Measurement.tobs)), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-    filter(Measurement.date >= one_year).filter(Measurement.date <= one_year).all()
+    start_date= dt.datetime.strptime(start, '%Y-%m-%d')
+    last_year = dt.timedelta(days=365)
+    start = start_date-last_year
+    end = dt.date(2017, 8, 23)
+    temp_call = session.query(func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs)).\
+    filter(measurement.date >= start).filter(measurement.date <= end).all()
 
+    trip = list(np.ravel(temp_call))
+    return jsonify(trip)
 
 
 
