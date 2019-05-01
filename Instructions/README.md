@@ -4,7 +4,7 @@ I  need to do some climate analysis on Honolulu, Hawaii!.
 
 I started with useing  Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. the  analysis was done  using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* (climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files were used to  complete  climate analysis and data exploration.
+* (climate.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite)  climate analysis and data exploration.
 
 * I Choose a start date of 1-1-2010 and end date of 1-1-2011
 * I Use SQLAlchemy `create_engine` to connect to your sqlite database.
